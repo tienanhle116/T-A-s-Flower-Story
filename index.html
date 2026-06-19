@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>T&A's Flower Story</title>
+
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400&display=swap');
+
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+
+body{
+background:#f8f2ea;
+color:#4a3b35;
+font-family:'Montserrat',sans-serif;
+}
+
+
+
+/* Header */
+
+header{
+height:90px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 10%;
+}
+
+
+.logo{
+font-family:'Cormorant Garamond',serif;
+font-size:40px;
+letter-spacing:1px;
+}
+
+
+nav{
+display:flex;
+align-items:center;
+gap:25px;
+}
+
+
+nav a{
+text-decoration:none;
+color:#4a3b35;
+font-size:14px;
+}
+
+
+.lang-btn{
+border:none;
+background:#d8c1ad;
+padding:8px 18px;
+border-radius:20px;
+cursor:pointer;
+}
+
+
+
+/* Hero */
+
+.hero{
+
+min-height:80vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+padding:30px;
+
+text-align:center;
+
+}
+
+
+.hero-box{
+
+background:#fffaf5;
+
+padding:70px 40px;
+
+max-width:850px;
+
+border-radius:25px;
+
+box-shadow:
+0 20px 40px rgba(70,40,20,.12);
+
+}
+
+
+
+.hero h1{
+
+font-family:'Cormorant Garamond',serif;
+
+font-size:75px;
+
+font-weight:400;
+
+}
+
+
+
+.hero p{
+
+margin:25px 0;
+
+letter-spacing:2px;
+
+}
+
+
+
+.button{
+
+display:inline-block;
+
+background:#8b6651;
+
+color:white;
+
+padding:15px 40px;
+
+border-radius:30px;
+
+text-decoration:none;
+
+}
+
+
+
+
+/* Collection */
+
+section{
+
+padding:80px 10%;
+
+}
+
+
+
+.title{
+
+font-family:'Cormorant Garamond',serif;
+
+font-size:55px;
+
+text-align:center;
+
+margin-bottom:50px;
+
+}
+
+
+
+.products{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:30px;
+
+}
+
+
+
+.card{
+
+background:#fffaf5;
+
+padding:30px;
+
+text-align:center;
+
+border-radius:20px;
+
+box-shadow:
+0 10px 25px rgba(70,40,20,.1);
+
+}
+
+
+
+.flower-icon{
+
+font-size:70px;
+
+}
+
+
+
+.card h3{
+
+font-family:'Cormorant Garamond',serif;
+
+font-size:32px;
+
+}
+
+
+
+.price{
+
+color:#9b6d55;
+
+margin-top:15px;
+
+}
+
+
+
+
+
+/* About */
+
+.about{
+
+max-width:700px;
+
+margin:auto;
+
+text-align:center;
+
+line-height:2;
+
+}
+
+
+
+/* Contact */
+
+.contact{
+
+background:#eadbc9;
+
+text-align:center;
+
+}
+
+
+.contact p{
+
+margin:12px;
+
+}
+
+
+
+
+
+footer{
+
+background:#3b2c25;
+
+color:white;
+
+text-align:center;
+
+padding:25px;
+
+}
+
+
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+
+header{
+
+height:auto;
+
+flex-direction:column;
+
+gap:20px;
+
+padding:25px;
+
+}
+
+
+.logo{
+
+font-size:32px;
+
+text-align:center;
+
+}
+
+
+
+nav{
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+
+
+.hero{
+
+min-height:70vh;
+
+}
+
+
+
+.hero-box{
+
+padding:45px 20px;
+
+}
+
+
+
+.hero h1{
+
+font-size:45px;
+
+}
+
+
+
+.products{
+
+grid-template-columns:1fr;
+
+}
+
+
+
+.title{
+
+font-size:40px;
+
+}
+
+
+
+section{
+
+padding:60px 20px;
+
+}
+
+
+}
+
+
+
+</style>
+
+</head>
+
+
+
+
+<body>
+
+
+
+<header>
+
+
+<div class="logo">
+T&A's Flower Story
+</div>
+
+
+
+<nav>
+
+<a href="#">
+Home
+</a>
+
+<a href="#">
+Flowers
+</a>
+
+<a href="#">
+About
+</a>
+
+<a href="#contact">
+Contact
+</a>
+
+
+<button class="lang-btn" onclick="changeLanguage()">
+VI / EN
+</button>
+
+
+</nav>
+
+
+</header>
+
+
+
+
+
+<div class="hero">
+
+
+<div class="hero-box">
+
+
+<h1 id="heroTitle">
+Flowers Crafted With Love
+</h1>
+
+
+<p id="heroText">
+Korean inspired floral studio • Handmade bouquets
+</p>
+
+
+<a class="button" id="shop">
+Shop Collection
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<section>
+
+
+<h2 class="title" id="collection">
+Flower Collection
+</h2>
+
+
+
+<div class="products">
+
+
+
+<div class="card">
+
+<div class="flower-icon">
+🌹
+</div>
+
+<h3 id="rose">
+Soft Rose Bouquet
+</h3>
+
+<p>
+Elegant handmade arrangement
+</p>
+
+<div class="price">
+$65
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<div class="flower-icon">
+💐
+</div>
+
+<h3 id="wedding">
+Wedding Flowers
+</h3>
+
+<p>
+Romantic floral designs
+</p>
+
+<div class="price">
+$120+
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<div class="flower-icon">
+🌷
+</div>
+
+<h3 id="gift">
+Gift Bouquet
+</h3>
+
+<p>
+Made for special moments
+</p>
+
+<div class="price">
+$85
+</div>
+
+</div>
+
+
+
+</div>
+
+</section>
+
+
+
+
+
+
+<section>
+
+
+<h2 class="title">
+Our Story
+</h2>
+
+
+<div class="about" id="about">
+
+T&A's Flower Story creates handmade bouquets
+with soft colors, elegant designs, and a Korean
+flower studio aesthetic.
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<section class="contact" id="contact">
+
+
+<h2 class="title">
+Contact Us
+</h2>
+
+
+<p>
+📍 528 W Nubia St, Covina, CA 91722
+</p>
+
+
+<p>
+📞 +1 626-781-7509
+</p>
+
+
+<p>
+✉ thanhtruc7193@gmail.com
+</p>
+
+
+</section>
+
+
+
+
+
+<footer>
+
+T&A's Flower Story © 2026
+
+</footer>
+
+
+
+
+
+
+<script>
+
+
+let vietnamese=false;
+
+
+function changeLanguage(){
+
+
+vietnamese=!vietnamese;
+
+
+if(vietnamese){
+
+
+heroTitle.innerHTML =
+"Hoa Đẹp Cho Mọi Khoảnh Khắc";
+
+
+heroText.innerHTML =
+"Studio hoa phong cách Hàn Quốc • Hoa làm thủ công";
+
+
+shop.innerHTML =
+"Mua Hoa";
+
+
+collection.innerHTML =
+"Bộ Sưu Tập Hoa";
+
+
+rose.innerHTML =
+"Bó Hoa Hồng Dịu Dàng";
+
+
+wedding.innerHTML =
+"Hoa Cưới";
+
+
+gift.innerHTML =
+"Hoa Quà Tặng";
+
+
+about.innerHTML =
+"T&A's Flower Story tạo ra những bó hoa thủ công với màu sắc nhẹ nhàng, tinh tế và phong cách hoa Hàn Quốc.";
+
+}
+
+else{
+
+location.reload();
+
+}
+
+
+}
+
+
+</script>
+
+
+
+</body>
+
+</html>
