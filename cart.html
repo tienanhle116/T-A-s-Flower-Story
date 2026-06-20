@@ -396,10 +396,9 @@
 
 <body>
   <header>
-    <a class="logo" href="flower-story-fixed.html">T&A's Flower Story</a>
+    <a class="logo" href="index.html">T&A's Flower Story</a>
     <nav>
-      <a href="flower-story-fixed.html#flowers" id="navCollection">Collection</a>
-      <a href="rose-bouquets.html" id="navRoses">Hoa Hồng</a>
+      <a href="index.html#flowers" id="navCollection">Collection</a>
       <div class="lang-buttons" aria-label="Language selector">
         <button class="lang-btn" type="button" data-lang="en">EN</button>
         <button class="lang-btn" type="button" data-lang="vi">VI</button>
@@ -499,7 +498,6 @@
       en: {
         title: "Cart",
         collection: "Collection",
-        roses: "Rose Bouquets",
         summary: "Order Total",
         products: "Products",
         pickup: "Pick up",
@@ -521,12 +519,13 @@
         remove: "Remove",
         quantity: "Quantity",
         bouquet1: "Bouquet 1",
-        bouquet2: "Bouquet 2"
+        bouquet2: "Bouquet 2",
+        bouquet3: "Bouquet 3",
+        bouquet4: "Bouquet 4"
       },
       vi: {
         title: "Giỏ Hàng",
         collection: "Bộ sưu tập",
-        roses: "Hoa Hồng",
         summary: "Tổng Tiền",
         products: "Sản phẩm",
         pickup: "Nhận tại tiệm",
@@ -548,12 +547,13 @@
         remove: "Xóa",
         quantity: "Số lượng",
         bouquet1: "Bó 1",
-        bouquet2: "Bó 2"
+        bouquet2: "Bó 2",
+        bouquet3: "Bó 3",
+        bouquet4: "Bó 4"
       },
       es: {
         title: "Carrito",
         collection: "Colección",
-        roses: "Ramos de Rosas",
         summary: "Total del Pedido",
         products: "Productos",
         pickup: "Recoger",
@@ -575,12 +575,24 @@
         remove: "Eliminar",
         quantity: "Cantidad",
         bouquet1: "Ramo 1",
-        bouquet2: "Ramo 2"
+        bouquet2: "Ramo 2",
+        bouquet3: "Ramo 3",
+        bouquet4: "Ramo 4"
       }
     };
     const productNames = {
       "rose-bouquet-1": { en: "Bouquet 1", vi: "Bó 1", es: "Ramo 1" },
-      "rose-bouquet-2": { en: "Bouquet 2", vi: "Bó 2", es: "Ramo 2" }
+      "rose-bouquet-2": { en: "Bouquet 2", vi: "Bó 2", es: "Ramo 2" },
+      "rose-bouquet-3": { en: "Bouquet 3", vi: "Bó 3", es: "Ramo 3" },
+      "rose-bouquet-4": { en: "Bouquet 4", vi: "Bó 4", es: "Ramo 4" },
+      "tulip-bouquet-1": { en: "Tulip Bouquet 1", vi: "Bó Tulip 1", es: "Ramo de Tulipanes 1" },
+      "tulip-bouquet-2": { en: "Tulip Bouquet 2", vi: "Bó Tulip 2", es: "Ramo de Tulipanes 2" },
+      "tulip-bouquet-3": { en: "Tulip Bouquet 3", vi: "Bó Tulip 3", es: "Ramo de Tulipanes 3" },
+      "tulip-bouquet-4": { en: "Tulip Bouquet 4", vi: "Bó Tulip 4", es: "Ramo de Tulipanes 4" },
+      "mixed-bouquet-1": { en: "Mixed Bouquet 1", vi: "Bó Tổng Hợp 1", es: "Ramo Mixto 1" },
+      "mixed-bouquet-2": { en: "Mixed Bouquet 2", vi: "Bó Tổng Hợp 2", es: "Ramo Mixto 2" },
+      "mixed-bouquet-3": { en: "Mixed Bouquet 3", vi: "Bó Tổng Hợp 3", es: "Ramo Mixto 3" },
+      "mixed-bouquet-4": { en: "Mixed Bouquet 4", vi: "Bó Tổng Hợp 4", es: "Ramo Mixto 4" }
     };
 
     function currentLang() {
@@ -593,7 +605,6 @@
       document.documentElement.lang = lang;
       document.title = `${text.title} | T&A's Flower Story`;
       document.getElementById("navCollection").textContent = text.collection;
-      document.getElementById("navRoses").textContent = text.roses;
       document.getElementById("cartTitle").textContent = text.title;
       document.getElementById("summaryTitle").textContent = text.summary;
       document.getElementById("productsLabel").textContent = text.products;

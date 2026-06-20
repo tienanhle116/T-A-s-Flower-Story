@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Hoa Hồng | T&A's Flower Story</title>
+  <title>Hoa Tổng Hợp | T&A's Flower Story</title>
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500&display=swap');
@@ -42,31 +41,26 @@
       text-decoration: none;
     }
 
-    .back-link {
-      color: #4a3b35;
-      font-size: 14px;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .back-link:hover {
-      color: #8b6651;
-    }
-
     nav {
       display: flex;
       align-items: center;
+      justify-content: flex-end;
       gap: 20px;
       flex-wrap: wrap;
-      justify-content: flex-end;
     }
 
+    .back-link,
     .cart-link {
-      position: relative;
       color: #4a3b35;
       font-size: 14px;
       font-weight: 500;
       text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .back-link:hover,
+    .cart-link:hover {
+      color: #8b6651;
     }
 
     .cart-count {
@@ -161,6 +155,7 @@
       aspect-ratio: 4 / 5;
       display: block;
       object-fit: cover;
+      background: #eadfd5;
     }
 
     .bouquet-info {
@@ -221,6 +216,10 @@
         text-align: center;
       }
 
+      nav {
+        justify-content: center;
+      }
+
       .bouquets {
         grid-template-columns: 1fr;
       }
@@ -259,13 +258,13 @@
 
   <main>
     <section class="intro">
-      <h1 id="pageTitle">Hoa Hồng</h1>
-      <p id="pageIntro">Những bó hoa hồng được chọn để lưu giữ các khoảnh khắc ngọt ngào, mềm mại và thật đáng nhớ.</p>
+      <h1 id="pageTitle">Hoa Tổng Hợp</h1>
+      <p id="pageIntro">Những bó hoa tổng hợp được phối mềm mại, ngọt ngào và phù hợp cho nhiều dịp đặc biệt.</p>
     </section>
 
-    <section class="bouquets" aria-label="Rose bouquet products">
-      <article class="bouquet-card" data-add-card data-id="rose-bouquet-1" data-name="Bó 1" data-price="60" data-image="assets/rose-bouquet-1.jpg">
-        <img src="assets/rose-bouquet-1.jpg" alt="Bó hoa hồng màu hồng với giấy gói tông hồng nhẹ">
+    <section class="bouquets" aria-label="Mixed bouquet products">
+      <article class="bouquet-card" data-add-card data-id="mixed-bouquet-1" data-name="Bó Tổng Hợp 1" data-price="60" data-image="assets/mixed-bouquet-1.jpg">
+        <img src="assets/mixed-bouquet-1.jpg" alt="Bó hoa tổng hợp tông hồng với giấy gói màu hồng nhẹ">
         <div class="bouquet-info">
           <h2 id="bouquet1Name">Bó 1</h2>
           <span class="price">$60</span>
@@ -273,17 +272,17 @@
         <button class="add-button" type="button" data-add-button>Add to Cart</button>
       </article>
 
-      <article class="bouquet-card" data-add-card data-id="rose-bouquet-2" data-name="Bó 2" data-price="60" data-image="assets/rose-bouquet-2.jpg">
-        <img src="assets/rose-bouquet-2.jpg" alt="Bó hoa hồng đỏ với giấy gói màu trắng">
+      <article class="bouquet-card" data-add-card data-id="mixed-bouquet-2" data-name="Bó Tổng Hợp 2" data-price="55" data-image="assets/mixed-bouquet-2.jpg">
+        <img src="assets/mixed-bouquet-2.jpg" alt="Bó hoa tổng hợp dạng hộp tròn với hoa hồng và hoa trắng">
         <div class="bouquet-info">
           <h2 id="bouquet2Name">Bó 2</h2>
-          <span class="price">$60</span>
+          <span class="price">$55</span>
         </div>
         <button class="add-button" type="button" data-add-button>Add to Cart</button>
       </article>
 
-      <article class="bouquet-card" data-add-card data-id="rose-bouquet-3" data-name="Bó 3" data-price="70" data-image="assets/rose-bouquet-3.jpg">
-        <img src="assets/rose-bouquet-3.jpg" alt="Bó hoa hồng đỏ với giấy gói màu hồng">
+      <article class="bouquet-card" data-add-card data-id="mixed-bouquet-3" data-name="Bó Tổng Hợp 3" data-price="70" data-image="assets/mixed-bouquet-3.jpg">
+        <img src="assets/mixed-bouquet-3.jpg" alt="Bó hoa tổng hợp tông hồng trắng với nơ lưới">
         <div class="bouquet-info">
           <h2 id="bouquet3Name">Bó 3</h2>
           <span class="price">$70</span>
@@ -291,11 +290,11 @@
         <button class="add-button" type="button" data-add-button>Add to Cart</button>
       </article>
 
-      <article class="bouquet-card" data-add-card data-id="rose-bouquet-4" data-name="Bó 4" data-price="80" data-image="assets/rose-bouquet-4.jpg">
-        <img src="assets/rose-bouquet-4.jpg" alt="Bó hoa hồng màu hồng với lá xanh và giấy gói hồng">
+      <article class="bouquet-card" data-add-card data-id="mixed-bouquet-4" data-name="Bó Tổng Hợp 4" data-price="75" data-image="assets/mixed-bouquet-4.jpg">
+        <img src="assets/mixed-bouquet-4.jpg" alt="Bó hoa tổng hợp cận cảnh với hoa hồng, hoa cúc và lá xanh">
         <div class="bouquet-info">
           <h2 id="bouquet4Name">Bó 4</h2>
-          <span class="price">$80</span>
+          <span class="price">$75</span>
         </div>
         <button class="add-button" type="button" data-add-button>Add to Cart</button>
       </article>
@@ -309,8 +308,8 @@
     const LANG_KEY = "taFlowerLang";
     const pageText = {
       en: {
-        title: "Rose Bouquets",
-        intro: "Rose bouquets chosen to preserve sweet, soft, and memorable moments.",
+        title: "Mixed Bouquets",
+        intro: "Softly arranged mixed bouquets for birthdays, gifts, and meaningful moments.",
         back: "Back to Collection",
         cart: "Cart",
         bouquet1: "Bouquet 1",
@@ -321,8 +320,8 @@
         added: "Added to Cart"
       },
       vi: {
-        title: "Hoa Hồng",
-        intro: "Những bó hoa hồng được chọn để lưu giữ các khoảnh khắc ngọt ngào, mềm mại và thật đáng nhớ.",
+        title: "Hoa Tổng Hợp",
+        intro: "Những bó hoa tổng hợp được phối mềm mại, ngọt ngào và phù hợp cho nhiều dịp đặc biệt.",
         back: "Quay lại bộ sưu tập",
         cart: "Giỏ hàng",
         bouquet1: "Bó 1",
@@ -333,8 +332,8 @@
         added: "Đã thêm vào giỏ"
       },
       es: {
-        title: "Ramos de Rosas",
-        intro: "Ramos de rosas elegidos para conservar momentos dulces, suaves y memorables.",
+        title: "Ramos Mixtos",
+        intro: "Ramos mixtos arreglados con suavidad para cumpleaños, regalos y momentos especiales.",
         back: "Volver a la colección",
         cart: "Carrito",
         bouquet1: "Ramo 1",
