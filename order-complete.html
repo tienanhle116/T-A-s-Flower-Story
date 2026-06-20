@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Hoàn Tất | T&A's Flower Story</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #f8f2ea;
+      color: #4a3b35;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    header {
+      min-height: 90px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 0 10%;
+      background: #f8f2ea;
+      box-shadow: 0 1px 0 rgba(74, 59, 53, 0.08);
+    }
+
+    .logo {
+      color: #4a3b35;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    .back-link {
+      color: #4a3b35;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 76px 10% 90px;
+    }
+
+    .complete-card {
+      background: #fffaf5;
+      border: 1px solid rgba(139, 102, 81, 0.14);
+      border-radius: 24px;
+      box-shadow: 0 18px 40px rgba(70, 40, 20, 0.12);
+      padding: clamp(28px, 5vw, 54px);
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(46px, 7vw, 74px);
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 22px;
+    }
+
+    .note {
+      margin: 0 auto 26px;
+      padding: 22px;
+      background: #f8f2ea;
+      border: 1px solid rgba(139, 102, 81, 0.16);
+      border-radius: 18px;
+      color: #5d4940;
+      line-height: 1.8;
+    }
+
+    .order-info {
+      display: grid;
+      gap: 12px;
+      max-width: 560px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .order-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(139, 102, 81, 0.12);
+      line-height: 1.6;
+    }
+
+    .order-row span:first-child {
+      color: #6a554c;
+    }
+
+    .product-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 6px;
+      padding: 14px;
+      background: #f8f2ea;
+      border: 1px solid rgba(139, 102, 81, 0.14);
+      border-radius: 14px;
+      white-space: pre-line;
+    }
+
+    footer {
+      background: #3b2c25;
+      color: #fff;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+        padding: 24px;
+        text-align: center;
+      }
+
+      main {
+        padding: 54px 20px 68px;
+      }
+
+      .logo {
+        font-size: 32px;
+      }
+
+      .order-row {
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a class="logo" href="flower-story-fixed.html">T&A's Flower Story</a>
+    <a class="back-link" href="checkout.html" id="backToPayment">Back to Payment</a>
+  </header>
+
+  <main>
+    <section class="complete-card">
+      <h1 id="completeTitle">Hoàn Tất</h1>
+      <p class="note" id="completeNote">
+        Ấn vào đây sau khi hoàn tất Zelle và chụp lại màn hình thông tin Zelle.
+      </p>
+
+      <div class="order-info">
+        <div class="order-row">
+          <span id="nameLabel">Tên</span>
+          <strong id="customerName">-</strong>
+        </div>
+        <div class="order-row">
+          <span id="emailLabel">Email</span>
+          <strong id="customerEmail">-</strong>
+        </div>
+        <div class="order-row">
+          <span id="phoneLabel">Số điện thoại</span>
+          <strong id="customerPhone">-</strong>
+        </div>
+        <div class="order-row">
+          <span id="addressLabel">Địa chỉ</span>
+          <strong id="customerAddress">-</strong>
+        </div>
+        <div class="order-row">
+          <span id="fulfillmentLabel">Hình thức nhận hàng</span>
+          <strong id="orderFulfillment">-</strong>
+        </div>
+        <div class="order-row">
+          <span id="productsLabel">Bó hoa đã đặt</span>
+          <strong class="product-list" id="orderProducts">-</strong>
+        </div>
+        <div class="order-row">
+          <span id="screenshotLabel">Ảnh Zelle</span>
+          <strong id="zelleScreenshot">-</strong>
+        </div>
+        <div class="order-row">
+          <span id="totalLabel">Tổng tiền</span>
+          <strong id="orderTotal">$0</strong>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>T&A's Flower Story © 2026</footer>
+
+  <script>
+    const LANG_KEY = "taFlowerLang";
+    const pageText = {
+      en: {
+        title: "Complete",
+        back: "Back to Payment",
+        note: "Your order details and Zelle screenshot have been sent to the shop. Please keep this page or a screenshot for your records.",
+        name: "Name",
+        email: "Email",
+        phone: "Phone number",
+        address: "Address",
+        fulfillment: "Fulfillment",
+        pickup: "Pick up",
+        delivery: "Delivery",
+        products: "Ordered bouquets",
+        screenshot: "Zelle screenshot",
+        noAddress: "No delivery address",
+        noScreenshot: "Uploaded by customer",
+        total: "Bouquet total"
+      },
+      vi: {
+        title: "Hoàn Tất",
+        back: "Quay lại thanh toán",
+        note: "Thông tin đơn hàng và ảnh Zelle của bạn đã được gửi đến cửa hàng. Bạn có thể giữ lại trang này hoặc chụp màn hình để lưu thông tin.",
+        name: "Tên",
+        email: "Email",
+        phone: "Số điện thoại",
+        address: "Địa chỉ",
+        fulfillment: "Hình thức nhận hàng",
+        pickup: "Nhận tại tiệm",
+        delivery: "Giao hàng",
+        products: "Bó hoa đã đặt",
+        screenshot: "Ảnh Zelle",
+        noAddress: "Không có địa chỉ ship",
+        noScreenshot: "Khách đã upload",
+        total: "Tổng tiền bó hoa"
+      },
+      es: {
+        title: "Completado",
+        back: "Volver al pago",
+        note: "Los detalles de tu pedido y la captura de Zelle se enviaron a la tienda. Conserva esta página o toma una captura para tus registros.",
+        name: "Nombre",
+        email: "Email",
+        phone: "Número de teléfono",
+        address: "Dirección",
+        fulfillment: "Método de entrega",
+        pickup: "Recoger",
+        delivery: "Entrega",
+        products: "Ramos pedidos",
+        screenshot: "Captura de Zelle",
+        noAddress: "Sin dirección de entrega",
+        noScreenshot: "Subida por el cliente",
+        total: "Total de ramos"
+      }
+    };
+
+    const orderInfo = JSON.parse(localStorage.getItem("taFlowerOrderInfo") || "{}");
+
+    function setLanguage(lang) {
+      const text = pageText[lang] || pageText.en;
+      document.documentElement.lang = lang;
+      document.title = `${text.title} | T&A's Flower Story`;
+      document.getElementById("completeTitle").textContent = text.title;
+      document.getElementById("backToPayment").textContent = text.back;
+      document.getElementById("completeNote").textContent = text.note;
+      document.getElementById("nameLabel").textContent = text.name;
+      document.getElementById("emailLabel").textContent = text.email;
+      document.getElementById("phoneLabel").textContent = text.phone;
+      document.getElementById("addressLabel").textContent = text.address;
+      document.getElementById("fulfillmentLabel").textContent = text.fulfillment;
+      document.getElementById("productsLabel").textContent = text.products;
+      document.getElementById("screenshotLabel").textContent = text.screenshot;
+      document.getElementById("totalLabel").textContent = text.total;
+      document.getElementById("customerAddress").textContent = orderInfo.address || text.noAddress;
+      document.getElementById("orderFulfillment").textContent = orderInfo.fulfillment === "delivery" ? text.delivery : text.pickup;
+      document.getElementById("zelleScreenshot").textContent = orderInfo.screenshotName || text.noScreenshot;
+    }
+
+    document.getElementById("customerName").textContent = orderInfo.name || "-";
+    document.getElementById("customerEmail").textContent = orderInfo.email || "-";
+    document.getElementById("customerPhone").textContent = orderInfo.phone || "-";
+    document.getElementById("orderProducts").textContent = orderInfo.products || "-";
+    document.getElementById("orderTotal").textContent = `$${orderInfo.total || 0}`;
+
+    setLanguage(localStorage.getItem(LANG_KEY) || "en");
+  </script>
+</body>
+
+</html>

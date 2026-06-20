@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Giỏ Hàng | T&A's Flower Story</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #f8f2ea;
+      color: #4a3b35;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    header {
+      min-height: 90px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 0 10%;
+      background: #f8f2ea;
+      box-shadow: 0 1px 0 rgba(74, 59, 53, 0.08);
+    }
+
+    .logo {
+      color: #4a3b35;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      color: #4a3b35;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .lang-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      border: 1px solid transparent;
+      background: #d8c1ad;
+      color: #4a3b35;
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .lang-btn:hover {
+      background: #c9aa93;
+      transform: translateY(-1px);
+    }
+
+    .lang-btn.active {
+      background: #8b6651;
+      color: #fffaf5;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 76px 10% 90px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 7vw, 74px);
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 34px;
+      text-align: center;
+    }
+
+    .cart-layout {
+      display: grid;
+      grid-template-columns: minmax(460px, 1fr) minmax(320px, 360px);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .cart-main {
+      display: grid;
+      gap: 24px;
+    }
+
+    .cart-items,
+    .summary,
+    .customer-panel {
+      background: #fffaf5;
+      border: 1px solid rgba(139, 102, 81, 0.14);
+      border-radius: 22px;
+      box-shadow: 0 16px 34px rgba(70, 40, 20, 0.1);
+    }
+
+    .cart-items {
+      overflow: hidden;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      padding: 20px;
+      border-bottom: 1px solid rgba(139, 102, 81, 0.12);
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item img {
+      width: 120px;
+      height: 144px;
+      border-radius: 14px;
+      object-fit: cover;
+    }
+
+    .item-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .item-meta {
+      color: #6a554c;
+      line-height: 1.7;
+    }
+
+    .item-details {
+      min-width: 0;
+    }
+
+    .quantity-control {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+      padding: 6px;
+      background: #f8f2ea;
+      border: 1px solid rgba(139, 102, 81, 0.18);
+      border-radius: 999px;
+    }
+
+    .quantity-button {
+      border: 1px solid rgba(139, 102, 81, 0.28);
+      width: 34px;
+      height: 34px;
+      background: #fffaf5;
+      color: #8b6651;
+      border-radius: 50%;
+      cursor: pointer;
+      font: inherit;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .quantity-value {
+      min-width: 24px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .summary {
+      padding: 26px;
+      position: sticky;
+      top: 24px;
+    }
+
+    .summary h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      margin-bottom: 18px;
+    }
+
+    .fulfillment {
+      display: grid;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .fulfillment label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 14px;
+      border: 1px solid rgba(139, 102, 81, 0.18);
+      border-radius: 14px;
+      cursor: pointer;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      margin: 12px 0;
+      color: #6a554c;
+    }
+
+    .summary-row.total {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(139, 102, 81, 0.18);
+      color: #4a3b35;
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .delivery-note {
+      display: none;
+      margin-top: 14px;
+      padding: 14px;
+      background: #f8f2ea;
+      border: 1px solid rgba(139, 102, 81, 0.16);
+      border-radius: 14px;
+      color: #6a554c;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .delivery-note.visible {
+      display: block;
+    }
+
+    .customer-panel {
+      padding: 26px;
+    }
+
+    .customer-panel h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      margin-bottom: 18px;
+    }
+
+    .customer-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      color: #5d4940;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: 1px solid rgba(139, 102, 81, 0.22);
+      background: #fff;
+      color: #4a3b35;
+      padding: 13px 14px;
+      border-radius: 14px;
+      font: inherit;
+    }
+
+    .field textarea {
+      min-height: 92px;
+      resize: vertical;
+    }
+
+    .checkout-button {
+      width: 100%;
+      display: inline-block;
+      margin-top: 24px;
+      background: #8b6651;
+      color: #fffaf5;
+      padding: 15px 22px;
+      border-radius: 999px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .checkout-button.disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .empty {
+      padding: 34px;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 1060px) {
+      header {
+        flex-direction: column;
+        padding: 24px;
+        text-align: center;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      .cart-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        position: static;
+      }
+    }
+
+    @media (max-width: 560px) {
+      main {
+        padding: 44px 16px 64px;
+      }
+
+      .logo {
+        font-size: 32px;
+      }
+
+      nav {
+        gap: 12px;
+      }
+
+      .lang-buttons {
+        width: 100%;
+        justify-content: center;
+      }
+
+      h1 {
+        margin-bottom: 26px;
+      }
+
+      .cart-item {
+        grid-template-columns: 86px minmax(0, 1fr);
+        gap: 14px;
+        padding: 16px;
+      }
+
+      .cart-item img {
+        width: 86px;
+        height: 104px;
+      }
+
+      .quantity-control {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .summary,
+      .customer-panel {
+        padding: 20px;
+        border-radius: 18px;
+      }
+
+      .summary h2,
+      .customer-panel h2 {
+        font-size: 31px;
+      }
+
+      .summary-row.total {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a class="logo" href="flower-story-fixed.html">T&A's Flower Story</a>
+    <nav>
+      <a href="flower-story-fixed.html#flowers" id="navCollection">Collection</a>
+      <a href="rose-bouquets.html" id="navRoses">Hoa Hồng</a>
+      <div class="lang-buttons" aria-label="Language selector">
+        <button class="lang-btn" type="button" data-lang="en">EN</button>
+        <button class="lang-btn" type="button" data-lang="vi">VI</button>
+        <button class="lang-btn" type="button" data-lang="es">ES</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <h1 id="cartTitle">Giỏ Hàng</h1>
+
+    <div class="cart-layout">
+      <div class="cart-main">
+        <section class="cart-items" id="cartItems"></section>
+
+        <section class="customer-panel">
+          <h2 id="customerInfoTitle">Thông tin khách hàng</h2>
+          <form class="customer-form" id="customerForm">
+            <div class="field">
+              <label for="customerName" id="customerNameLabel">Tên của bạn</label>
+              <input id="customerName" name="customerName" type="text" required>
+            </div>
+
+            <div class="field">
+              <label for="customerEmail" id="customerEmailLabel">Email</label>
+              <input id="customerEmail" name="customerEmail" type="email" required>
+            </div>
+
+            <div class="field">
+              <label for="customerPhone" id="customerPhoneLabel">Số điện thoại</label>
+              <input id="customerPhone" name="customerPhone" type="tel" required>
+            </div>
+
+            <div class="field">
+              <label for="customerAddress" id="customerAddressLabel">Địa chỉ nếu muốn ship</label>
+              <textarea id="customerAddress" name="customerAddress"></textarea>
+            </div>
+          </form>
+        </section>
+      </div>
+
+      <aside class="summary">
+        <h2 id="summaryTitle">Tổng Tiền</h2>
+
+        <div class="summary-row">
+          <span id="productsLabel">Sản phẩm</span>
+          <span id="subtotal">$0</span>
+        </div>
+
+        <div class="fulfillment" aria-label="Pickup or delivery">
+          <label>
+            <input type="radio" name="fulfillment" value="pickup" checked>
+            <span id="pickupLabel">Nhận tại tiệm</span>
+          </label>
+          <label>
+            <input type="radio" name="fulfillment" value="delivery">
+            <span id="deliveryOptionLabel">Giao hàng ($20 - $30)</span>
+          </label>
+        </div>
+
+        <div class="summary-row">
+          <span id="deliveryLabel">Phí giao hàng</span>
+          <span id="deliveryFee">$0</span>
+        </div>
+
+        <p class="delivery-note" id="deliveryNote">Nếu chọn giao hàng, cửa hàng sẽ liên lạc với bạn để xác nhận phí delivery. Bạn sẽ Zelle phí giao hàng sau.</p>
+
+        <div class="summary-row total">
+          <span id="totalLabel">Total</span>
+          <span id="total">$0</span>
+        </div>
+
+        <button class="checkout-button" type="button" id="checkoutButton">Đi đến thanh toán</button>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    const CART_KEY = "taFlowerCart";
+    const LANG_KEY = "taFlowerLang";
+    const FULFILLMENT_KEY = "taFlowerFulfillment";
+    const GOOGLE_FORM = {
+      enabled: false,
+      formResponseUrl: "",
+      fields: {
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        fulfillment: "",
+        products: "",
+        total: "",
+        note: ""
+      }
+    };
+    const pageText = {
+      en: {
+        title: "Cart",
+        collection: "Collection",
+        roses: "Rose Bouquets",
+        summary: "Order Total",
+        products: "Products",
+        pickup: "Pick up",
+        deliveryOption: "Delivery ($20 - $30)",
+        delivery: "Delivery fee",
+        deliveryPending: "To be confirmed",
+        deliveryFree: "$0",
+        deliveryNote: "If you choose delivery, the shop will contact you to confirm the delivery fee based on your address. You will Zelle the delivery fee later.",
+        total: "Total",
+        checkout: "Go to Checkout",
+        customerInfo: "Customer Information",
+        customerName: "Your name",
+        customerEmail: "Email",
+        customerPhone: "Phone number",
+        customerAddress: "Address if you want delivery",
+        missingInfo: "Please fill in your name, email, and phone number before checkout.",
+        missingAddress: "Please enter your delivery address so we can confirm the delivery fee.",
+        empty: 'Your cart is empty.<br><a href="rose-bouquets.html">Choose a rose bouquet</a>',
+        remove: "Remove",
+        quantity: "Quantity",
+        bouquet1: "Bouquet 1",
+        bouquet2: "Bouquet 2"
+      },
+      vi: {
+        title: "Giỏ Hàng",
+        collection: "Bộ sưu tập",
+        roses: "Hoa Hồng",
+        summary: "Tổng Tiền",
+        products: "Sản phẩm",
+        pickup: "Nhận tại tiệm",
+        deliveryOption: "Giao hàng ($20 - $30)",
+        delivery: "Phí giao hàng",
+        deliveryPending: "Sẽ xác nhận sau",
+        deliveryFree: "$0",
+        deliveryNote: "Nếu chọn giao hàng, cửa hàng sẽ liên lạc với bạn để xác nhận phí delivery dựa theo địa chỉ. Bạn sẽ Zelle phí giao hàng sau.",
+        total: "Tổng cộng",
+        checkout: "Đi đến thanh toán",
+        customerInfo: "Thông tin khách hàng",
+        customerName: "Tên của bạn",
+        customerEmail: "Email",
+        customerPhone: "Số điện thoại",
+        customerAddress: "Địa chỉ nếu muốn ship",
+        missingInfo: "Vui lòng điền tên, email và số điện thoại trước khi thanh toán.",
+        missingAddress: "Vui lòng điền địa chỉ giao hàng để cửa hàng xác nhận phí delivery.",
+        empty: 'Giỏ hàng của bạn đang trống.<br><a href="rose-bouquets.html">Chọn bó hoa hồng</a>',
+        remove: "Xóa",
+        quantity: "Số lượng",
+        bouquet1: "Bó 1",
+        bouquet2: "Bó 2"
+      },
+      es: {
+        title: "Carrito",
+        collection: "Colección",
+        roses: "Ramos de Rosas",
+        summary: "Total del Pedido",
+        products: "Productos",
+        pickup: "Recoger",
+        deliveryOption: "Entrega ($20 - $30)",
+        delivery: "Costo de entrega",
+        deliveryPending: "Se confirmará después",
+        deliveryFree: "$0",
+        deliveryNote: "Si eliges entrega, la tienda se comunicará contigo para confirmar el costo según tu dirección. Podrás enviar el costo de entrega por Zelle después.",
+        total: "Total",
+        checkout: "Ir al pago",
+        customerInfo: "Información del cliente",
+        customerName: "Tu nombre",
+        customerEmail: "Email",
+        customerPhone: "Número de teléfono",
+        customerAddress: "Dirección si quieres entrega",
+        missingInfo: "Completa tu nombre, email y número de teléfono antes de pagar.",
+        missingAddress: "Ingresa tu dirección de entrega para que podamos confirmar el costo.",
+        empty: 'Tu carrito está vacío.<br><a href="rose-bouquets.html">Elige un ramo de rosas</a>',
+        remove: "Eliminar",
+        quantity: "Cantidad",
+        bouquet1: "Ramo 1",
+        bouquet2: "Ramo 2"
+      }
+    };
+    const productNames = {
+      "rose-bouquet-1": { en: "Bouquet 1", vi: "Bó 1", es: "Ramo 1" },
+      "rose-bouquet-2": { en: "Bouquet 2", vi: "Bó 2", es: "Ramo 2" }
+    };
+
+    function currentLang() {
+      return localStorage.getItem(LANG_KEY) || "en";
+    }
+
+    function setLanguage(lang) {
+      const text = pageText[lang] || pageText.en;
+      localStorage.setItem(LANG_KEY, lang);
+      document.documentElement.lang = lang;
+      document.title = `${text.title} | T&A's Flower Story`;
+      document.getElementById("navCollection").textContent = text.collection;
+      document.getElementById("navRoses").textContent = text.roses;
+      document.getElementById("cartTitle").textContent = text.title;
+      document.getElementById("summaryTitle").textContent = text.summary;
+      document.getElementById("productsLabel").textContent = text.products;
+      document.getElementById("pickupLabel").textContent = text.pickup;
+      document.getElementById("deliveryOptionLabel").textContent = text.deliveryOption;
+      document.getElementById("deliveryLabel").textContent = text.delivery;
+      document.getElementById("deliveryNote").textContent = text.deliveryNote;
+      document.getElementById("totalLabel").textContent = text.total;
+      document.getElementById("checkoutButton").textContent = text.checkout;
+      document.getElementById("customerInfoTitle").textContent = text.customerInfo;
+      document.getElementById("customerNameLabel").textContent = text.customerName;
+      document.getElementById("customerEmailLabel").textContent = text.customerEmail;
+      document.getElementById("customerPhoneLabel").textContent = text.customerPhone;
+      document.getElementById("customerAddressLabel").textContent = text.customerAddress;
+
+      document.querySelectorAll(".lang-btn").forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === lang);
+      });
+
+      renderCart();
+    }
+
+    function getCart() {
+      return JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    }
+
+    function money(value) {
+      return `$${value}`;
+    }
+
+    function getFulfillment() {
+      return localStorage.getItem(FULFILLMENT_KEY) || "pickup";
+    }
+
+    function orderProductsSummary(cart, lang) {
+      return cart.map((item) => {
+        const name = productNames[item.id]?.[lang] || item.name;
+        return `${name} - ${money(item.price)} x ${item.quantity}`;
+      }).join("\n");
+    }
+
+    async function submitOrderToGoogleForm(orderInfo, cart, lang) {
+      if (!GOOGLE_FORM.enabled || !GOOGLE_FORM.formResponseUrl) return;
+
+      const fields = GOOGLE_FORM.fields;
+      const formData = new FormData();
+      const values = {
+        [fields.name]: orderInfo.name,
+        [fields.email]: orderInfo.email,
+        [fields.phone]: orderInfo.phone,
+        [fields.address]: orderInfo.address,
+        [fields.fulfillment]: orderInfo.fulfillment,
+        [fields.products]: orderProductsSummary(cart, lang),
+        [fields.total]: money(orderInfo.total),
+        [fields.note]: orderInfo.fulfillment === "delivery"
+          ? "Delivery fee will be confirmed by the shop based on customer address."
+          : "Pick up order."
+      };
+
+      Object.entries(values).forEach(([entryId, value]) => {
+        if (entryId) formData.append(entryId, value);
+      });
+
+      await fetch(GOOGLE_FORM.formResponseUrl, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+      });
+    }
+
+    function renderCart() {
+      const cart = getCart();
+      const cartItems = document.getElementById("cartItems");
+      const lang = currentLang();
+      const text = pageText[lang] || pageText.en;
+
+      if (!cart.length) {
+        cartItems.innerHTML = `<div class="empty">${text.empty}</div>`;
+      } else {
+        cartItems.innerHTML = cart.map((item) => `
+          <article class="cart-item">
+            <img src="${item.image}" alt="${productNames[item.id]?.[lang] || item.name}">
+            <div class="item-details">
+              <div class="item-name">${productNames[item.id]?.[lang] || item.name}</div>
+              <div class="item-meta">${money(item.price)} x ${item.quantity}</div>
+              <div class="quantity-control" aria-label="${text.quantity}">
+                <button class="quantity-button" type="button" data-decrease="${item.id}">-</button>
+                <span class="quantity-value">${item.quantity}</span>
+                <button class="quantity-button" type="button" data-increase="${item.id}">+</button>
+              </div>
+            </div>
+          </article>
+        `).join("");
+      }
+
+      document.querySelectorAll("[data-decrease]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const nextCart = getCart()
+            .map((item) => item.id === button.dataset.decrease ? { ...item, quantity: item.quantity - 1 } : item)
+            .filter((item) => item.quantity > 0);
+
+          saveCart(nextCart);
+          renderCart();
+        });
+      });
+
+      document.querySelectorAll("[data-increase]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const nextCart = getCart().map((item) => (
+            item.id === button.dataset.increase ? { ...item, quantity: item.quantity + 1 } : item
+          ));
+
+          saveCart(nextCart);
+          renderCart();
+        });
+      });
+
+      renderSummary();
+    }
+
+    function renderSummary() {
+      const cart = getCart();
+      const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      const fulfillment = getFulfillment();
+      const text = pageText[currentLang()] || pageText.en;
+      const total = subtotal;
+
+      document.getElementById("subtotal").textContent = money(subtotal);
+      document.getElementById("deliveryFee").textContent = fulfillment === "delivery" && subtotal > 0 ? text.deliveryPending : text.deliveryFree;
+      document.getElementById("total").textContent = money(total);
+      document.getElementById("deliveryNote").classList.toggle("visible", fulfillment === "delivery" && subtotal > 0);
+      document.getElementById("checkoutButton").classList.toggle("disabled", subtotal === 0);
+
+      document.querySelectorAll('input[name="fulfillment"]').forEach((input) => {
+        input.checked = input.value === fulfillment;
+      });
+    }
+
+    document.querySelectorAll('input[name="fulfillment"]').forEach((input) => {
+      input.addEventListener("change", () => {
+        localStorage.setItem(FULFILLMENT_KEY, input.value);
+        renderSummary();
+      });
+    });
+
+    document.getElementById("checkoutButton").addEventListener("click", async () => {
+      const cart = getCart();
+      const lang = currentLang();
+      const text = pageText[lang] || pageText.en;
+      const fulfillment = getFulfillment();
+      const name = document.getElementById("customerName").value.trim();
+      const email = document.getElementById("customerEmail").value.trim();
+      const phone = document.getElementById("customerPhone").value.trim();
+      const address = document.getElementById("customerAddress").value.trim();
+      const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+      if (!cart.length) return;
+
+      if (!name || !email || !phone) {
+        alert(text.missingInfo);
+        return;
+      }
+
+      if (fulfillment === "delivery" && !address) {
+        alert(text.missingAddress);
+        return;
+      }
+
+      const orderInfo = {
+        name,
+        email,
+        phone,
+        address,
+        total: subtotal,
+        fulfillment
+      };
+
+      localStorage.setItem("taFlowerOrderInfo", JSON.stringify(orderInfo));
+      await submitOrderToGoogleForm(orderInfo, cart, lang);
+
+      window.location.href = "checkout.html";
+    });
+
+    document.querySelectorAll(".lang-btn").forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+
+    const savedOrderInfo = JSON.parse(localStorage.getItem("taFlowerOrderInfo") || "{}");
+    document.getElementById("customerName").value = savedOrderInfo.name || "";
+    document.getElementById("customerEmail").value = savedOrderInfo.email || "";
+    document.getElementById("customerPhone").value = savedOrderInfo.phone || "";
+    document.getElementById("customerAddress").value = savedOrderInfo.address || "";
+
+    setLanguage(currentLang());
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Thanh Toán Zelle | T&A's Flower Story</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #f8f2ea;
+      color: #4a3b35;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    header {
+      min-height: 90px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 0 10%;
+      background: #f8f2ea;
+      box-shadow: 0 1px 0 rgba(74, 59, 53, 0.08);
+    }
+
+    .logo {
+      color: #4a3b35;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    .back-link {
+      color: #4a3b35;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .lang-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      border: 1px solid transparent;
+      background: #d8c1ad;
+      color: #4a3b35;
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .lang-btn:hover {
+      background: #c9aa93;
+      transform: translateY(-1px);
+    }
+
+    .lang-btn.active {
+      background: #8b6651;
+      color: #fffaf5;
+    }
+
+    main {
+      max-width: 980px;
+      margin: auto;
+      padding: 76px 10% 90px;
+    }
+
+    .payment-card {
+      background: #fffaf5;
+      border: 1px solid rgba(139, 102, 81, 0.14);
+      border-radius: 24px;
+      box-shadow: 0 18px 40px rgba(70, 40, 20, 0.12);
+      padding: clamp(28px, 5vw, 54px);
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(46px, 7vw, 74px);
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 28px;
+    }
+
+    .summary {
+      display: inline-grid;
+      gap: 10px;
+      margin-bottom: 28px;
+      color: #6a554c;
+      line-height: 1.7;
+      text-align: left;
+    }
+
+    .summary strong {
+      color: #4a3b35;
+    }
+
+    .amount {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      padding: 14px 24px;
+      background: #8b6651;
+      color: #fffaf5;
+      border-radius: 999px;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .qr {
+      width: min(520px, 100%);
+      display: block;
+      margin: 10px auto 30px;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 10px 24px rgba(70, 40, 20, 0.1);
+    }
+
+    .note {
+      max-width: 700px;
+      margin: auto;
+      padding: 22px;
+      background: #f8f2ea;
+      border: 1px solid rgba(139, 102, 81, 0.16);
+      border-radius: 18px;
+      color: #5d4940;
+      line-height: 1.8;
+    }
+
+    .complete-button {
+      border: none;
+      background: #8b6651;
+      color: #fffaf5;
+      margin-top: 10px;
+      padding: 15px 22px;
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 500;
+    }
+
+    .complete-hint {
+      color: #6a554c;
+      font-size: 13px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .submit-status {
+      color: #6a554c;
+      font-size: 13px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .delivery-note {
+      display: none;
+      max-width: 700px;
+      margin: 18px auto 0;
+      padding: 16px;
+      background: #f8f2ea;
+      border: 1px solid rgba(139, 102, 81, 0.16);
+      border-radius: 18px;
+      color: #5d4940;
+      line-height: 1.7;
+    }
+
+    .delivery-note.visible {
+      display: block;
+    }
+
+    .zelle-proof-form {
+      display: grid;
+      gap: 16px;
+      max-width: 700px;
+      margin: 28px auto 0;
+    }
+
+    .upload-field {
+      display: grid;
+      gap: 8px;
+      text-align: left;
+    }
+
+    .upload-field label {
+      color: #5d4940;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .upload-field input[type="file"] {
+      width: 100%;
+      border: 1px dashed rgba(139, 102, 81, 0.36);
+      background: #fff;
+      color: #4a3b35;
+      padding: 14px;
+      border-radius: 14px;
+      font: inherit;
+    }
+
+    footer {
+      background: #3b2c25;
+      color: #fff;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+        padding: 24px;
+        text-align: center;
+      }
+
+      main {
+        padding: 54px 20px 68px;
+      }
+
+      .logo {
+        font-size: 32px;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      .lang-buttons {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .payment-card {
+        border-radius: 18px;
+        padding: 26px 18px;
+      }
+
+      .amount {
+        width: 100%;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .complete-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a class="logo" href="flower-story-fixed.html">T&A's Flower Story</a>
+    <nav>
+      <a class="back-link" href="cart.html" id="backToCart">Back to Cart</a>
+      <div class="lang-buttons" aria-label="Language selector">
+        <button class="lang-btn" type="button" data-lang="en">EN</button>
+        <button class="lang-btn" type="button" data-lang="vi">VI</button>
+        <button class="lang-btn" type="button" data-lang="es">ES</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="payment-card">
+      <h1 id="checkoutTitle">Thanh Toán Zelle</h1>
+
+      <div class="summary">
+        <div><span id="phoneLabel">Số điện thoại</span>: <strong>+1 6265841601</strong></div>
+        <div><span id="nameLabel">Tên</span>: <strong>TIEN ANH LE</strong></div>
+      </div>
+
+      <div class="amount"><span id="amountLabel">Số tiền cần Zelle</span>: <span id="paymentTotal">$0</span></div>
+
+      <img class="qr" src="assets/zelle-qr.png" alt="Mã QR Zelle cho TIEN ANH LE">
+
+      <p class="note" id="paymentNote">
+        Hãy để lại tên của bạn trong nội dung zelle để cửa hàng có thể xác định đơn hàng của bạn.
+      </p>
+
+      <p class="delivery-note" id="deliveryNote">Bạn đã chọn giao hàng. Cửa hàng sẽ liên hệ để xác nhận phí delivery, sau đó bạn sẽ Zelle phí giao hàng sau.</p>
+
+      <form class="zelle-proof-form" id="zelleProofForm" action="https://formsubmit.co/letienanh7a5@gmail.com" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_subject" value="New T&A's Flower Story Order">
+        <input type="hidden" name="_next" id="formNextUrl">
+        <input type="hidden" name="Customer name" id="emailCustomerName">
+        <input type="hidden" name="Email" id="emailCustomerEmail">
+        <input type="hidden" name="Phone" id="emailCustomerPhone">
+        <input type="hidden" name="Address" id="emailCustomerAddress">
+        <input type="hidden" name="Fulfillment" id="emailFulfillment">
+        <input type="hidden" name="Products" id="emailProducts">
+        <input type="hidden" name="Bouquet total" id="emailTotal">
+        <input type="hidden" name="Delivery note" id="emailDeliveryNote">
+
+        <div class="upload-field">
+          <label for="zelleScreenshot" id="uploadLabel">Upload hình ảnh Zelle đã chụp</label>
+          <input id="zelleScreenshot" name="attachment" type="file" accept="image/*" required>
+        </div>
+
+        <button class="complete-button" type="submit" id="completeButton">Hoàn tất</button>
+        <p class="complete-hint" id="completeHint">Ấn vào đây sau khi hoàn tất Zelle và chụp lại màn hình thông tin Zelle.</p>
+        <p class="submit-status" id="submitStatus"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>T&A's Flower Story © 2026</footer>
+
+  <script>
+    const LANG_KEY = "taFlowerLang";
+    const pageText = {
+      en: {
+        title: "Zelle Payment",
+        back: "Back to Cart",
+        phone: "Phone number",
+        name: "Name",
+        amount: "Zelle amount",
+        note: "Please leave your name in the Zelle memo so the shop can identify your order.",
+        upload: "Upload your Zelle screenshot",
+        complete: "Complete Order",
+        completeHint: "Tap here after finishing Zelle, then take a screenshot of your Zelle information.",
+        sending: "Sending your order. If FormSubmit asks for confirmation, please complete it so the shop receives your order.",
+        deliveryNote: "You selected delivery. The shop will contact you to confirm the delivery fee, and you will Zelle the delivery fee later."
+      },
+      vi: {
+        title: "Thanh Toán Zelle",
+        back: "Quay lại giỏ hàng",
+        phone: "Số điện thoại",
+        name: "Tên",
+        amount: "Số tiền cần Zelle",
+        note: "Hãy để lại tên của bạn trong nội dung zelle để cửa hàng có thể xác định đơn hàng của bạn.",
+        upload: "Upload hình ảnh Zelle đã chụp",
+        complete: "Hoàn tất",
+        completeHint: "Ấn vào đây sau khi hoàn tất Zelle và chụp lại màn hình thông tin Zelle.",
+        sending: "Đang gửi đơn hàng. Nếu FormSubmit yêu cầu xác nhận, vui lòng hoàn tất để cửa hàng nhận được đơn.",
+        deliveryNote: "Bạn đã chọn giao hàng. Cửa hàng sẽ liên hệ để xác nhận phí delivery, sau đó bạn sẽ Zelle phí giao hàng sau."
+      },
+      es: {
+        title: "Pago con Zelle",
+        back: "Volver al carrito",
+        phone: "Número de teléfono",
+        name: "Nombre",
+        amount: "Cantidad para Zelle",
+        note: "Deja tu nombre en la nota de Zelle para que la tienda pueda identificar tu pedido.",
+        upload: "Sube la captura de Zelle",
+        complete: "Completar pedido",
+        completeHint: "Toca aquí después de completar Zelle y toma una captura de pantalla de tu información de Zelle.",
+        sending: "Enviando tu pedido. Si FormSubmit pide confirmación, complétala para que la tienda reciba tu pedido.",
+        deliveryNote: "Elegiste entrega. La tienda se comunicará contigo para confirmar el costo de entrega, y podrás enviar ese costo por Zelle después."
+      }
+    };
+    const cart = JSON.parse(localStorage.getItem("taFlowerCart") || "[]");
+    const orderInfo = JSON.parse(localStorage.getItem("taFlowerOrderInfo") || "{}");
+    const fulfillment = localStorage.getItem("taFlowerFulfillment") || "pickup";
+    const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const productNames = {
+      "rose-bouquet-1": { en: "Bouquet 1", vi: "Bó 1", es: "Ramo 1" },
+      "rose-bouquet-2": { en: "Bouquet 2", vi: "Bó 2", es: "Ramo 2" }
+    };
+
+    document.getElementById("paymentTotal").textContent = `$${subtotal}`;
+
+    function currentLang() {
+      return localStorage.getItem(LANG_KEY) || "en";
+    }
+
+    function productSummary(lang) {
+      return cart.map((item) => {
+        const name = productNames[item.id]?.[lang] || item.name;
+        return `${name} - $${item.price} x ${item.quantity}`;
+      }).join("\n");
+    }
+
+    function setLanguage(lang) {
+      const text = pageText[lang] || pageText.en;
+      localStorage.setItem(LANG_KEY, lang);
+      document.documentElement.lang = lang;
+      document.title = `${text.title} | T&A's Flower Story`;
+      document.getElementById("checkoutTitle").textContent = text.title;
+      document.getElementById("backToCart").textContent = text.back;
+      document.getElementById("phoneLabel").textContent = text.phone;
+      document.getElementById("nameLabel").textContent = text.name;
+      document.getElementById("amountLabel").textContent = text.amount;
+      document.getElementById("paymentNote").textContent = text.note;
+      document.getElementById("uploadLabel").textContent = text.upload;
+      document.getElementById("completeButton").textContent = text.complete;
+      document.getElementById("completeHint").textContent = text.completeHint;
+      document.getElementById("deliveryNote").textContent = text.deliveryNote;
+      document.getElementById("deliveryNote").classList.toggle("visible", fulfillment === "delivery");
+
+      document.querySelectorAll(".lang-btn").forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === lang);
+      });
+    }
+
+    document.querySelectorAll(".lang-btn").forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+
+    setLanguage(currentLang());
+
+    let orderSubmitted = false;
+
+    document.getElementById("zelleProofForm").addEventListener("submit", () => {
+      const lang = currentLang();
+      const text = pageText[lang] || pageText.en;
+      const deliveryNote = fulfillment === "delivery"
+        ? "Delivery selected. Shop will contact customer to confirm delivery fee."
+        : "Pick up selected.";
+      const screenshot = document.getElementById("zelleScreenshot").files[0];
+      const updatedOrder = {
+        ...orderInfo,
+        total: subtotal,
+        fulfillment,
+        products: productSummary(lang),
+        screenshotName: screenshot ? screenshot.name : ""
+      };
+
+      document.getElementById("emailCustomerName").value = updatedOrder.name || "";
+      document.getElementById("emailCustomerEmail").value = updatedOrder.email || "";
+      document.getElementById("emailCustomerPhone").value = updatedOrder.phone || "";
+      document.getElementById("emailCustomerAddress").value = updatedOrder.address || "";
+      document.getElementById("emailFulfillment").value = fulfillment;
+      document.getElementById("emailProducts").value = updatedOrder.products;
+      document.getElementById("emailTotal").value = `$${subtotal}`;
+      document.getElementById("emailDeliveryNote").value = deliveryNote;
+      document.getElementById("formNextUrl").value = window.location.protocol.startsWith("http")
+        ? new URL("order-complete.html", window.location.href).href
+        : "";
+
+      localStorage.setItem("taFlowerOrderInfo", JSON.stringify(updatedOrder));
+      orderSubmitted = true;
+      document.getElementById("completeButton").disabled = true;
+      document.getElementById("submitStatus").textContent = text.sending;
+    });
+  </script>
+</body>
+
+</html>

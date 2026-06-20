@@ -1,0 +1,36 @@
+Google Form setup for T&A's Flower Story
+
+Create a Google Form with these fields:
+
+1. Customer name
+2. Email
+3. Phone number
+4. Address
+5. Fulfillment
+6. Products
+7. Bouquet total
+8. Note
+
+Then click:
+Google Form > More menu > Get pre-filled link
+
+Fill each field with sample text and send that pre-filled link back to Codex.
+
+Codex will use that link to fill this config in outputs/cart.html:
+
+const GOOGLE_FORM = {
+  enabled: true,
+  formResponseUrl: "https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse",
+  fields: {
+    name: "entry.xxxxx",
+    email: "entry.xxxxx",
+    phone: "entry.xxxxx",
+    address: "entry.xxxxx",
+    fulfillment: "entry.xxxxx",
+    products: "entry.xxxxx",
+    total: "entry.xxxxx",
+    note: "entry.xxxxx"
+  }
+};
+
+After that, customer information will be sent to Google Forms when they click checkout from the cart page.

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Hoa Hồng | T&A's Flower Story</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #f8f2ea;
+      color: #4a3b35;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    header {
+      min-height: 90px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 0 10%;
+      background: #f8f2ea;
+      box-shadow: 0 1px 0 rgba(74, 59, 53, 0.08);
+    }
+
+    .logo {
+      color: #4a3b35;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    .back-link {
+      color: #4a3b35;
+      font-size: 14px;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .back-link:hover {
+      color: #8b6651;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .cart-link {
+      position: relative;
+      color: #4a3b35;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .cart-count {
+      min-width: 20px;
+      height: 20px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 6px;
+      background: #8b6651;
+      color: #fffaf5;
+      border-radius: 999px;
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    .lang-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      border: 1px solid transparent;
+      background: #d8c1ad;
+      color: #4a3b35;
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .lang-btn:hover {
+      background: #c9aa93;
+      transform: translateY(-1px);
+    }
+
+    .lang-btn.active {
+      background: #8b6651;
+      color: #fffaf5;
+    }
+
+    main {
+      padding: 76px 10% 90px;
+    }
+
+    .intro {
+      max-width: 820px;
+      margin: 0 auto 44px;
+      text-align: center;
+    }
+
+    .intro h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 7vw, 78px);
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+
+    .intro p {
+      color: #6a554c;
+      line-height: 1.8;
+    }
+
+    .bouquets {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 32px;
+      max-width: 1120px;
+      margin: auto;
+    }
+
+    .bouquet-card {
+      overflow: hidden;
+      background: #fffaf5;
+      border: 1px solid rgba(139, 102, 81, 0.14);
+      border-radius: 22px;
+      cursor: pointer;
+      box-shadow: 0 18px 40px rgba(70, 40, 20, 0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .bouquet-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 46px rgba(70, 40, 20, 0.15);
+    }
+
+    .bouquet-card img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      display: block;
+      object-fit: cover;
+    }
+
+    .bouquet-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 24px;
+    }
+
+    .bouquet-info h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px;
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    .price {
+      flex: 0 0 auto;
+      background: #8b6651;
+      color: #fffaf5;
+      padding: 11px 20px;
+      border-radius: 999px;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .add-button {
+      width: calc(100% - 48px);
+      margin: 0 24px 24px;
+      border: none;
+      background: #8b6651;
+      color: #fffaf5;
+      padding: 14px 20px;
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 500;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .add-button:hover {
+      background: #755541;
+      transform: translateY(-1px);
+    }
+
+    footer {
+      background: #3b2c25;
+      color: #fff;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 820px) {
+      header {
+        flex-direction: column;
+        padding: 24px;
+        text-align: center;
+      }
+
+      .bouquets {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding: 54px 20px 68px;
+      }
+
+      .logo {
+        font-size: 32px;
+      }
+
+      .bouquet-info {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a class="logo" href="flower-story-fixed.html">T&A's Flower Story</a>
+    <nav>
+      <a class="back-link" href="flower-story-fixed.html#flowers" id="backToCollection">Back to Collection</a>
+      <a class="cart-link" href="cart.html"><span id="navCart">Cart</span> <span class="cart-count" data-cart-count>0</span></a>
+      <div class="lang-buttons" aria-label="Language selector">
+        <button class="lang-btn" type="button" data-lang="en">EN</button>
+        <button class="lang-btn" type="button" data-lang="vi">VI</button>
+        <button class="lang-btn" type="button" data-lang="es">ES</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h1 id="pageTitle">Hoa Hồng</h1>
+      <p id="pageIntro">Những bó hoa hồng được chọn để lưu giữ các khoảnh khắc ngọt ngào, mềm mại và thật đáng nhớ.</p>
+    </section>
+
+    <section class="bouquets" aria-label="Rose bouquet products">
+      <article class="bouquet-card" data-add-card data-id="rose-bouquet-1" data-name="Bó 1" data-price="60" data-image="assets/rose-bouquet-1.jpg">
+        <img src="assets/rose-bouquet-1.jpg" alt="Bó hoa hồng màu hồng với giấy gói tông hồng nhẹ">
+        <div class="bouquet-info">
+          <h2 id="bouquet1Name">Bó 1</h2>
+          <span class="price">$60</span>
+        </div>
+        <button class="add-button" type="button" data-add-button>Add to Cart</button>
+      </article>
+
+      <article class="bouquet-card" data-add-card data-id="rose-bouquet-2" data-name="Bó 2" data-price="60" data-image="assets/rose-bouquet-2.jpg">
+        <img src="assets/rose-bouquet-2.jpg" alt="Bó hoa hồng đỏ với giấy gói màu trắng">
+        <div class="bouquet-info">
+          <h2 id="bouquet2Name">Bó 2</h2>
+          <span class="price">$60</span>
+        </div>
+        <button class="add-button" type="button" data-add-button>Add to Cart</button>
+      </article>
+    </section>
+  </main>
+
+  <footer>T&A's Flower Story © 2026</footer>
+
+  <script>
+    const CART_KEY = "taFlowerCart";
+    const LANG_KEY = "taFlowerLang";
+    const pageText = {
+      en: {
+        title: "Rose Bouquets",
+        intro: "Rose bouquets chosen to preserve sweet, soft, and memorable moments.",
+        back: "Back to Collection",
+        cart: "Cart",
+        bouquet1: "Bouquet 1",
+        bouquet2: "Bouquet 2",
+        add: "Add to Cart",
+        added: "Added to Cart"
+      },
+      vi: {
+        title: "Hoa Hồng",
+        intro: "Những bó hoa hồng được chọn để lưu giữ các khoảnh khắc ngọt ngào, mềm mại và thật đáng nhớ.",
+        back: "Quay lại bộ sưu tập",
+        cart: "Giỏ hàng",
+        bouquet1: "Bó 1",
+        bouquet2: "Bó 2",
+        add: "Thêm vào giỏ hàng",
+        added: "Đã thêm vào giỏ"
+      },
+      es: {
+        title: "Ramos de Rosas",
+        intro: "Ramos de rosas elegidos para conservar momentos dulces, suaves y memorables.",
+        back: "Volver a la colección",
+        cart: "Carrito",
+        bouquet1: "Ramo 1",
+        bouquet2: "Ramo 2",
+        add: "Agregar al carrito",
+        added: "Agregado al carrito"
+      }
+    };
+
+    function currentLang() {
+      return localStorage.getItem(LANG_KEY) || "en";
+    }
+
+    function setLanguage(lang) {
+      const text = pageText[lang] || pageText.en;
+      localStorage.setItem(LANG_KEY, lang);
+      document.documentElement.lang = lang;
+      document.title = `${text.title} | T&A's Flower Story`;
+      document.getElementById("pageTitle").textContent = text.title;
+      document.getElementById("pageIntro").textContent = text.intro;
+      document.getElementById("backToCollection").textContent = text.back;
+      document.getElementById("navCart").textContent = text.cart;
+      document.getElementById("bouquet1Name").textContent = text.bouquet1;
+      document.getElementById("bouquet2Name").textContent = text.bouquet2;
+
+      document.querySelectorAll("[data-add-button]").forEach((button) => {
+        button.textContent = text.add;
+      });
+
+      document.querySelectorAll(".lang-btn").forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === lang);
+      });
+    }
+
+    function getCart() {
+      return JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      updateCartCount();
+    }
+
+    function updateCartCount() {
+      const count = getCart().reduce((total, item) => total + item.quantity, 0);
+
+      document.querySelectorAll("[data-cart-count]").forEach((badge) => {
+        badge.textContent = count;
+      });
+    }
+
+    function addToCart(product) {
+      const cart = getCart();
+      const existing = cart.find((item) => item.id === product.id);
+
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
+
+      saveCart(cart);
+    }
+
+    document.querySelectorAll("[data-add-card]").forEach((card) => {
+      card.addEventListener("click", () => {
+        const button = card.querySelector(".add-button");
+
+        addToCart({
+          id: card.dataset.id,
+          name: card.dataset.name,
+          price: Number(card.dataset.price),
+          image: card.dataset.image
+        });
+
+        button.textContent = pageText[currentLang()].added;
+        setTimeout(() => {
+          button.textContent = pageText[currentLang()].add;
+        }, 1200);
+      });
+    });
+
+    document.querySelectorAll(".lang-btn").forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+
+    setLanguage(currentLang());
+    updateCartCount();
+  </script>
+</body>
+
+</html>

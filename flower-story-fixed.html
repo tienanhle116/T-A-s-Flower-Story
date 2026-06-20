@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>T&A's Flower Story</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #f8f2ea;
+      color: #4a3b35;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    header {
+      min-height: 90px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 0 10%;
+      background: #f8f2ea;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 1px 0 rgba(74, 59, 53, 0.08);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #4a3b35;
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #8b6651;
+    }
+
+    .cart-link {
+      position: relative;
+      font-weight: 500;
+    }
+
+    .cart-count {
+      min-width: 20px;
+      height: 20px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 6px;
+      background: #8b6651;
+      color: #fffaf5;
+      border-radius: 999px;
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    .lang-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      border: 1px solid transparent;
+      background: #d8c1ad;
+      color: #4a3b35;
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .lang-btn:hover {
+      background: #c9aa93;
+      transform: translateY(-1px);
+    }
+
+    .lang-btn.active {
+      background: #8b6651;
+      color: #fffaf5;
+      border-color: #8b6651;
+    }
+
+    .hero {
+      min-height: 78vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .hero-box {
+      width: min(850px, 100%);
+      background: #fffaf5;
+      padding: 70px 40px;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(70, 40, 20, 0.12);
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(44px, 7vw, 75px);
+      font-weight: 400;
+      line-height: 1.05;
+    }
+
+    .hero p {
+      margin: 25px auto;
+      line-height: 1.7;
+      letter-spacing: 1.5px;
+    }
+
+    .button {
+      display: inline-block;
+      background: #8b6651;
+      color: #fff;
+      padding: 15px 40px;
+      border-radius: 999px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .button:hover {
+      background: #755541;
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 80px 10%;
+    }
+
+    .title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 5vw, 55px);
+      text-align: center;
+      margin-bottom: 50px;
+      line-height: 1.1;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #fffaf5;
+      padding: 35px 30px;
+      text-align: center;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(70, 40, 20, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 30px rgba(70, 40, 20, 0.14);
+    }
+
+    .flower-icon {
+      font-size: 70px;
+      margin-bottom: 15px;
+      line-height: 1;
+    }
+
+    .card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+
+    .card p {
+      line-height: 1.7;
+    }
+
+    .product-link {
+      color: inherit;
+      display: block;
+      text-decoration: none;
+    }
+
+    #aboutSection {
+      background: #fffaf5;
+      border-top: 1px solid rgba(139, 102, 81, 0.14);
+      border-bottom: 1px solid rgba(139, 102, 81, 0.14);
+    }
+
+    #aboutSection .title {
+      margin-bottom: 28px;
+    }
+
+    .about {
+      max-width: 860px;
+      margin: auto;
+      padding: 34px 0 0;
+      border-top: 1px solid rgba(139, 102, 81, 0.22);
+      color: #5d4940;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 2.6vw, 32px);
+      line-height: 1.7;
+      text-align: center;
+      white-space: pre-line;
+    }
+
+    .contact {
+      background: #eadbc9;
+      text-align: center;
+    }
+
+    .contact p {
+      margin: 12px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      background: #3b2c25;
+      color: #fff;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 24px;
+      }
+
+      .logo {
+        white-space: normal;
+        text-align: center;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+    @media (max-width: 480px) {
+      header {
+        gap: 18px;
+      }
+
+      .logo {
+        font-size: 32px;
+      }
+
+      nav {
+        gap: 14px;
+      }
+
+      .hero {
+        min-height: 70vh;
+        padding: 20px;
+      }
+
+      .hero-box {
+        padding: 45px 22px;
+        border-radius: 18px;
+      }
+
+      .hero p {
+        font-size: 14px;
+        letter-spacing: 1px;
+      }
+
+      section {
+        padding: 60px 20px;
+      }
+
+      .about {
+        padding-top: 26px;
+        font-size: 23px;
+        line-height: 1.65;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">T&A's Flower Story</div>
+
+    <nav>
+      <a href="#home" id="navHome">Home</a>
+      <a href="#flowers" id="navFlowers">Flowers</a>
+      <a href="#aboutSection" id="navAbout">About</a>
+      <a href="#contact" id="navContact">Contact</a>
+      <a class="cart-link" href="cart.html"><span id="navCart">Cart</span> <span class="cart-count" data-cart-count>0</span></a>
+
+      <div class="lang-buttons" aria-label="Language selector">
+        <button class="lang-btn active" type="button" data-lang="en">EN</button>
+        <button class="lang-btn" type="button" data-lang="vi">VI</button>
+        <button class="lang-btn" type="button" data-lang="es">ES</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-box">
+        <h1 id="heroTitle">Flowers Crafted With Love</h1>
+        <p id="heroText">Korean inspired floral studio • Handmade bouquets</p>
+        <a href="#flowers" class="button" id="shop">Shop Collection</a>
+      </div>
+    </section>
+
+    <section id="flowers">
+      <h2 class="title" id="collection">Flower Collection</h2>
+
+      <div class="products">
+        <a class="card product-link" href="rose-bouquets.html">
+          <div class="flower-icon" aria-hidden="true">🌹</div>
+          <h3 id="rose">Charming Rose Bouquet</h3>
+          <p id="roseText">A romantic rose bouquet designed with elegance, softness, and a graceful touch.</p>
+        </a>
+
+        <article class="card">
+          <div class="flower-icon" aria-hidden="true">🌷</div>
+          <h3 id="tulip">Lovely Tulip Bouquet</h3>
+          <p id="tulipText">A sweet tulip bouquet with a cute, gentle, and modern Korean-inspired style.</p>
+        </article>
+
+        <article class="card">
+          <div class="flower-icon" aria-hidden="true">💐</div>
+          <h3 id="mixed">Mixed Flower Bouquet</h3>
+          <p id="mixedText">A beautiful mix of seasonal flowers, perfect for birthdays, gifts, and special moments.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="aboutSection">
+      <h2 class="title" id="storyTitle">Our Story</h2>
+      <div class="about" id="about">
+        This little flower shop was created from the love of Thanh Truc and Tien Anh. We believe a bouquet is more than a gift; it is a way to hold on to beautiful feelings. That is why we choose wax flowers and silk flowers that can stay lovely over time, helping meaningful moments last longer. If you need fresh flowers, we can still prepare them for you; send us a message and we will help you have the most beautiful fresh bouquet.
+
+        Whether it is for your love, your parents, your friends, or anyone you treasure, we hope you find the perfect bouquet here. Thank you for visiting and growing with us. 🌷
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2 class="title" id="contactTitle">Contact Us</h2>
+      <p id="location">📍 528 W Nubia St, Covina, CA 91722</p>
+      <p id="phone">☎ +1 626-781-7509</p>
+      <p id="email">✉ thanhtruc7193@gmail.com</p>
+    </section>
+  </main>
+
+  <footer id="footer">T&A's Flower Story © 2026</footer>
+
+  <script>
+    const text = {
+      en: {
+        navHome: "Home",
+        navFlowers: "Flowers",
+        navAbout: "About",
+        navContact: "Contact",
+        navCart: "Cart",
+        heroTitle: "Flowers Crafted With Love",
+        heroText: "Korean inspired floral studio • Handmade bouquets",
+        shop: "Shop Collection",
+        collection: "Flower Collection",
+        rose: "Charming Rose Bouquet",
+        roseText: "A romantic rose bouquet designed with elegance, softness, and a graceful touch.",
+        tulip: "Lovely Tulip Bouquet",
+        tulipText: "A sweet tulip bouquet with a cute, gentle, and modern Korean-inspired style.",
+        mixed: "Mixed Flower Bouquet",
+        mixedText: "A beautiful mix of seasonal flowers, perfect for birthdays, gifts, and special moments.",
+        storyTitle: "Our Story",
+        about: "This little flower shop was created from the love of Thanh Truc and Tien Anh. We believe a bouquet is more than a gift; it is a way to hold on to beautiful feelings. That is why we choose wax flowers and silk flowers that can stay lovely over time, helping meaningful moments last longer. If you need fresh flowers, we can still prepare them for you; send us a message and we will help you have the most beautiful fresh bouquet.\n\nWhether it is for your love, your parents, your friends, or anyone you treasure, we hope you find the perfect bouquet here. Thank you for visiting and growing with us. 🌷",
+        contactTitle: "Contact Us"
+      },
+      vi: {
+        navHome: "Trang chủ",
+        navFlowers: "Hoa",
+        navAbout: "Giới thiệu",
+        navContact: "Liên hệ",
+        navCart: "Giỏ hàng",
+        heroTitle: "Hoa Đẹp Cho Mọi Khoảnh Khắc",
+        heroText: "Studio hoa phong cách Hàn Quốc • Hoa làm thủ công",
+        shop: "Xem Bộ Sưu Tập",
+        collection: "Bộ Sưu Tập Hoa",
+        rose: "Bó Hoa Hồng Quyến Rũ",
+        roseText: "Bó hoa hồng lãng mạn, sang trọng, nhẹ nhàng và đầy tinh tế.",
+        tulip: "Bó Hoa Tulip Xinh Xắn",
+        tulipText: "Bó hoa tulip dễ thương, nhẹ nhàng và mang phong cách Hàn Quốc hiện đại.",
+        mixed: "Bó Hoa Tổng Hợp",
+        mixedText: "Bó hoa nhiều loại theo mùa, phù hợp cho sinh nhật, quà tặng và dịp đặc biệt.",
+        storyTitle: "Câu Chuyện Của Chúng Tôi",
+        about: "Tiệm hoa nhỏ này được tạo nên từ tình yêu của Thanh Trúc và Tiến Anh. Chúng tôi tin rằng một bó hoa không chỉ là món quà, mà còn là cách để lưu giữ những cảm xúc đẹp. Vì vậy, chúng tôi lựa chọn những bó hoa sáp và hoa lụa có thể bền đẹp theo thời gian, giúp những khoảnh khắc ý nghĩa được lưu giữ lâu hơn. Nếu các bạn cần hoa tươi thì chúng tôi vẫn sẽ có, hãy gửi tin nhắn cho chúng tôi và bạn sẽ có được một bó hoa tươi đẹp nhất.\n\nDù dành tặng người yêu, ba mẹ, bạn bè hay bất kỳ ai bạn trân quý, hy vọng bạn sẽ tìm thấy một bó hoa thật phù hợp tại đây. Cảm ơn bạn đã ghé thăm và đồng hành cùng chúng tôi. 🌷",
+        contactTitle: "Liên Hệ"
+      },
+      es: {
+        navHome: "Inicio",
+        navFlowers: "Flores",
+        navAbout: "Acerca de",
+        navContact: "Contacto",
+        navCart: "Carrito",
+        heroTitle: "Flores Hechas Con Amor",
+        heroText: "Estudio floral inspirado en Corea • Ramos hechos a mano",
+        shop: "Ver Colección",
+        collection: "Colección de Flores",
+        rose: "Ramo de Rosas Encantador",
+        roseText: "Un ramo de rosas romántico, diseñado con elegancia, suavidad y un toque delicado.",
+        tulip: "Ramo de Tulipanes Bonito",
+        tulipText: "Un ramo de tulipanes dulce, tierno y con un estilo moderno inspirado en Corea.",
+        mixed: "Ramo de Flores Mixtas",
+        mixedText: "Una hermosa mezcla de flores de temporada, perfecta para cumpleaños, regalos y momentos especiales.",
+        storyTitle: "Nuestra Historia",
+        about: "Esta pequeña florería nació del amor de Thanh Truc y Tien Anh. Creemos que un ramo no es solo un regalo, sino también una forma de conservar emociones bonitas. Por eso elegimos flores de cera y flores de seda que pueden mantenerse hermosas con el paso del tiempo, para que los momentos significativos duren más. Si necesitas flores frescas, también podemos prepararlas para ti; envíanos un mensaje y te ayudaremos a tener el ramo fresco más hermoso.\n\nYa sea para tu amor, tus padres, tus amistades o cualquier persona que aprecies, esperamos que encuentres aquí el ramo perfecto. Gracias por visitarnos y acompañarnos. 🌷",
+        contactTitle: "Contáctanos"
+      }
+    };
+
+    const translatableIds = [
+      "navHome",
+      "navFlowers",
+      "navAbout",
+      "navContact",
+      "navCart",
+      "heroTitle",
+      "heroText",
+      "shop",
+      "collection",
+      "rose",
+      "roseText",
+      "tulip",
+      "tulipText",
+      "mixed",
+      "mixedText",
+      "storyTitle",
+      "about",
+      "contactTitle"
+    ];
+
+    function setLanguage(lang) {
+      if (!text[lang]) return;
+
+      document.documentElement.lang = lang;
+      localStorage.setItem("taFlowerLang", lang);
+
+      translatableIds.forEach((id) => {
+        document.getElementById(id).textContent = text[lang][id];
+      });
+
+      document.querySelectorAll(".lang-btn").forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === lang);
+      });
+    }
+
+    document.querySelectorAll(".lang-btn").forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem("taFlowerCart") || "[]");
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+
+      document.querySelectorAll("[data-cart-count]").forEach((badge) => {
+        badge.textContent = count;
+      });
+    }
+
+    setLanguage(localStorage.getItem("taFlowerLang") || "en");
+    updateCartCount();
+  </script>
+</body>
+
+</html>
