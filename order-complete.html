@@ -174,6 +174,10 @@
           <strong id="customerAddress">-</strong>
         </div>
         <div class="order-row">
+          <span id="customerNoteLabel">Ghi chú</span>
+          <strong id="customerNote">-</strong>
+        </div>
+        <div class="order-row">
           <span id="fulfillmentLabel">Hình thức nhận hàng</span>
           <strong id="orderFulfillment">-</strong>
         </div>
@@ -206,12 +210,14 @@
         email: "Email",
         phone: "Phone number",
         address: "Address",
+        customerNote: "Customer note",
         fulfillment: "Fulfillment",
         pickup: "Pick up",
         delivery: "Delivery",
         products: "Ordered bouquets",
         screenshot: "Zelle screenshot",
         noAddress: "No delivery address",
+        noCustomerNote: "No special note",
         noScreenshot: "Uploaded by customer",
         total: "Bouquet total"
       },
@@ -223,12 +229,14 @@
         email: "Email",
         phone: "Số điện thoại",
         address: "Địa chỉ",
+        customerNote: "Ghi chú",
         fulfillment: "Hình thức nhận hàng",
         pickup: "Nhận tại tiệm",
         delivery: "Giao hàng",
         products: "Bó hoa đã đặt",
         screenshot: "Ảnh Zelle",
         noAddress: "Không có địa chỉ ship",
+        noCustomerNote: "Không có ghi chú",
         noScreenshot: "Khách đã upload",
         total: "Tổng tiền bó hoa"
       },
@@ -240,12 +248,14 @@
         email: "Email",
         phone: "Número de teléfono",
         address: "Dirección",
+        customerNote: "Nota del cliente",
         fulfillment: "Método de entrega",
         pickup: "Recoger",
         delivery: "Entrega",
         products: "Ramos pedidos",
         screenshot: "Captura de Zelle",
         noAddress: "Sin dirección de entrega",
+        noCustomerNote: "Sin nota especial",
         noScreenshot: "Subida por el cliente",
         total: "Total de ramos"
       }
@@ -264,11 +274,13 @@
       document.getElementById("emailLabel").textContent = text.email;
       document.getElementById("phoneLabel").textContent = text.phone;
       document.getElementById("addressLabel").textContent = text.address;
+      document.getElementById("customerNoteLabel").textContent = text.customerNote;
       document.getElementById("fulfillmentLabel").textContent = text.fulfillment;
       document.getElementById("productsLabel").textContent = text.products;
       document.getElementById("screenshotLabel").textContent = text.screenshot;
       document.getElementById("totalLabel").textContent = text.total;
       document.getElementById("customerAddress").textContent = orderInfo.address || text.noAddress;
+      document.getElementById("customerNote").textContent = orderInfo.note || text.noCustomerNote;
       document.getElementById("orderFulfillment").textContent = orderInfo.fulfillment === "delivery" ? text.delivery : text.pickup;
       document.getElementById("zelleScreenshot").textContent = orderInfo.screenshotName || text.noScreenshot;
     }

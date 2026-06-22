@@ -433,8 +433,13 @@
             </div>
 
             <div class="field">
-              <label for="customerAddress" id="customerAddressLabel">Địa chỉ nếu muốn ship</label>
+              <label for="customerAddress" id="customerAddressLabel">Địa chỉ nếu muốn giao hàng</label>
               <textarea id="customerAddress" name="customerAddress"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="customerNote" id="customerNoteLabel">Ghi chú cho bó hoa</label>
+              <textarea id="customerNote" name="customerNote"></textarea>
             </div>
           </form>
         </section>
@@ -464,7 +469,7 @@
           <span id="deliveryFee">$0</span>
         </div>
 
-        <p class="delivery-note" id="deliveryNote">Nếu chọn giao hàng, cửa hàng sẽ liên lạc với bạn để xác nhận phí delivery. Bạn sẽ Zelle phí giao hàng sau.</p>
+        <p class="delivery-note" id="deliveryNote">Nếu chọn giao hàng, cửa hàng sẽ liên lạc với bạn để xác nhận phí giao hàng. Bạn sẽ Zelle phí giao hàng sau.</p>
 
         <div class="summary-row total">
           <span id="totalLabel">Total</span>
@@ -512,7 +517,8 @@
         customerName: "Your name",
         customerEmail: "Email",
         customerPhone: "Phone number",
-        customerAddress: "Address if you want delivery",
+        customerAddress: "Delivery address",
+        customerNote: "Special note for your bouquet",
         missingInfo: "Please fill in your name, email, and phone number before checkout.",
         missingAddress: "Please enter your delivery address so we can confirm the delivery fee.",
         empty: 'Your cart is empty.<br><a href="rose-bouquets.html">Choose a rose bouquet</a>',
@@ -533,16 +539,17 @@
         delivery: "Phí giao hàng",
         deliveryPending: "Sẽ xác nhận sau",
         deliveryFree: "$0",
-        deliveryNote: "Nếu chọn giao hàng, cửa hàng sẽ liên lạc với bạn để xác nhận phí delivery dựa theo địa chỉ. Bạn sẽ Zelle phí giao hàng sau.",
+        deliveryNote: "Nếu chọn giao hàng, cửa hàng sẽ liên lạc với bạn để xác nhận phí giao hàng dựa theo địa chỉ. Bạn sẽ Zelle phí giao hàng sau.",
         total: "Tổng cộng",
         checkout: "Đi đến thanh toán",
         customerInfo: "Thông tin khách hàng",
         customerName: "Tên của bạn",
         customerEmail: "Email",
         customerPhone: "Số điện thoại",
-        customerAddress: "Địa chỉ nếu muốn ship",
+        customerAddress: "Địa chỉ nếu muốn giao hàng",
+        customerNote: "Ghi chú cho bó hoa",
         missingInfo: "Vui lòng điền tên, email và số điện thoại trước khi thanh toán.",
-        missingAddress: "Vui lòng điền địa chỉ giao hàng để cửa hàng xác nhận phí delivery.",
+        missingAddress: "Vui lòng điền địa chỉ giao hàng để cửa hàng xác nhận phí giao hàng.",
         empty: 'Giỏ hàng của bạn đang trống.<br><a href="rose-bouquets.html">Chọn bó hoa hồng</a>',
         remove: "Xóa",
         quantity: "Số lượng",
@@ -569,6 +576,7 @@
         customerEmail: "Email",
         customerPhone: "Número de teléfono",
         customerAddress: "Dirección si quieres entrega",
+        customerNote: "Nota especial para tu ramo",
         missingInfo: "Completa tu nombre, email y número de teléfono antes de pagar.",
         missingAddress: "Ingresa tu dirección de entrega para que podamos confirmar el costo.",
         empty: 'Tu carrito está vacío.<br><a href="rose-bouquets.html">Elige un ramo de rosas</a>',
@@ -619,6 +627,7 @@
       document.getElementById("customerEmailLabel").textContent = text.customerEmail;
       document.getElementById("customerPhoneLabel").textContent = text.customerPhone;
       document.getElementById("customerAddressLabel").textContent = text.customerAddress;
+      document.getElementById("customerNoteLabel").textContent = text.customerNote;
 
       document.querySelectorAll(".lang-btn").forEach((button) => {
         button.classList.toggle("active", button.dataset.lang === lang);
@@ -663,9 +672,12 @@
         [fields.fulfillment]: orderInfo.fulfillment,
         [fields.products]: orderProductsSummary(cart, lang),
         [fields.total]: money(orderInfo.total),
-        [fields.note]: orderInfo.fulfillment === "delivery"
-          ? "Delivery fee will be confirmed by the shop based on customer address."
-          : "Pick up order."
+        [fields.note]: [
+          orderInfo.note || "No customer note.",
+          orderInfo.fulfillment === "delivery"
+            ? "Delivery fee will be confirmed by the shop based on customer address."
+            : "Pick up order."
+        ].join("\n")
       };
 
       Object.entries(values).forEach(([entryId, value]) => {
@@ -763,6 +775,7 @@
       const email = document.getElementById("customerEmail").value.trim();
       const phone = document.getElementById("customerPhone").value.trim();
       const address = document.getElementById("customerAddress").value.trim();
+      const note = document.getElementById("customerNote").value.trim();
       const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
       if (!cart.length) return;
@@ -782,6 +795,7 @@
         email,
         phone,
         address,
+        note,
         total: subtotal,
         fulfillment
       };
@@ -801,6 +815,7 @@
     document.getElementById("customerEmail").value = savedOrderInfo.email || "";
     document.getElementById("customerPhone").value = savedOrderInfo.phone || "";
     document.getElementById("customerAddress").value = savedOrderInfo.address || "";
+    document.getElementById("customerNote").value = savedOrderInfo.note || "";
 
     setLanguage(currentLang());
   </script>

@@ -174,7 +174,7 @@
 
     .products {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 30px;
     }
 
@@ -190,6 +190,29 @@
     .card:hover {
       transform: translateY(-6px);
       box-shadow: 0 16px 30px rgba(70, 40, 20, 0.14);
+    }
+
+    .card.disabled {
+      cursor: default;
+      opacity: 0.78;
+    }
+
+    .card.disabled:hover {
+      transform: none;
+      box-shadow: 0 10px 25px rgba(70, 40, 20, 0.1);
+    }
+
+    .coming-soon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 16px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #d8c1ad;
+      color: #4a3b35;
+      font-size: 12px;
+      font-weight: 500;
     }
 
     .flower-icon {
@@ -274,7 +297,7 @@
       }
 
       .products {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
     }
@@ -309,6 +332,10 @@
 
       section {
         padding: 60px 20px;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
       }
 
       .about {
@@ -369,6 +396,13 @@
           <h3 id="mixed">Mixed Flower Bouquet</h3>
           <p id="mixedText">A beautiful mix of seasonal flowers, perfect for birthdays, gifts, and special moments.</p>
         </a>
+
+        <article class="card disabled" aria-disabled="true">
+          <div class="flower-icon" aria-hidden="true">🎂</div>
+          <h3 id="cake">Floral Cake</h3>
+          <p id="cakeText">A sweet floral cake collection is being prepared for future celebrations.</p>
+          <span class="coming-soon" id="cakeStatus">Coming Soon</span>
+        </article>
       </div>
     </section>
 
@@ -409,6 +443,9 @@
         tulipText: "A sweet tulip bouquet with a cute, gentle, and modern Korean-inspired style.",
         mixed: "Mixed Flower Bouquet",
         mixedText: "A beautiful mix of seasonal flowers, perfect for birthdays, gifts, and special moments.",
+        cake: "Floral Cake",
+        cakeText: "A sweet floral cake collection is being prepared for future celebrations.",
+        cakeStatus: "Coming Soon",
         storyTitle: "Our Story",
         about: "This little flower shop was created from the love of Thanh Truc and Tien Anh. We believe a bouquet is more than a gift; it is a way to hold on to beautiful feelings. That is why we choose wax flowers and silk flowers that can stay lovely over time, helping meaningful moments last longer. If you need fresh flowers, we can still prepare them for you; send us a message and we will help you have the most beautiful fresh bouquet.\n\nWhether it is for your love, your parents, your friends, or anyone you treasure, we hope you find the perfect bouquet here. Thank you for visiting and growing with us. 🌷",
         contactTitle: "Contact Us"
@@ -429,6 +466,9 @@
         tulipText: "Bó hoa tulip dễ thương, nhẹ nhàng và mang phong cách Hàn Quốc hiện đại.",
         mixed: "Bó Hoa Tổng Hợp",
         mixedText: "Bó hoa nhiều loại theo mùa, phù hợp cho sinh nhật, quà tặng và dịp đặc biệt.",
+        cake: "Bánh Kem Hoa",
+        cakeText: "Bộ sưu tập bánh kem hoa đang được chuẩn bị cho những dịp chúc mừng sắp tới.",
+        cakeStatus: "Sắp ra mắt",
         storyTitle: "Câu Chuyện Của Chúng Tôi",
         about: "Tiệm hoa nhỏ này được tạo nên từ tình yêu của Thanh Trúc và Tiến Anh. Chúng tôi tin rằng một bó hoa không chỉ là món quà, mà còn là cách để lưu giữ những cảm xúc đẹp. Vì vậy, chúng tôi lựa chọn những bó hoa sáp và hoa lụa có thể bền đẹp theo thời gian, giúp những khoảnh khắc ý nghĩa được lưu giữ lâu hơn. Nếu các bạn cần hoa tươi thì chúng tôi vẫn sẽ có, hãy gửi tin nhắn cho chúng tôi và bạn sẽ có được một bó hoa tươi đẹp nhất.\n\nDù dành tặng người yêu, ba mẹ, bạn bè hay bất kỳ ai bạn trân quý, hy vọng bạn sẽ tìm thấy một bó hoa thật phù hợp tại đây. Cảm ơn bạn đã ghé thăm và đồng hành cùng chúng tôi. 🌷",
         contactTitle: "Liên Hệ"
@@ -449,6 +489,9 @@
         tulipText: "Un ramo de tulipanes dulce, tierno y con un estilo moderno inspirado en Corea.",
         mixed: "Ramo de Flores Mixtas",
         mixedText: "Una hermosa mezcla de flores de temporada, perfecta para cumpleaños, regalos y momentos especiales.",
+        cake: "Pastel Floral",
+        cakeText: "Una colección de pasteles florales se está preparando para futuras celebraciones.",
+        cakeStatus: "Próximamente",
         storyTitle: "Nuestra Historia",
         about: "Esta pequeña florería nació del amor de Thanh Truc y Tien Anh. Creemos que un ramo no es solo un regalo, sino también una forma de conservar emociones bonitas. Por eso elegimos flores de cera y flores de seda que pueden mantenerse hermosas con el paso del tiempo, para que los momentos significativos duren más. Si necesitas flores frescas, también podemos prepararlas para ti; envíanos un mensaje y te ayudaremos a tener el ramo fresco más hermoso.\n\nYa sea para tu amor, tus padres, tus amistades o cualquier persona que aprecies, esperamos que encuentres aquí el ramo perfecto. Gracias por visitarnos y acompañarnos. 🌷",
         contactTitle: "Contáctanos"
@@ -471,6 +514,9 @@
       "tulipText",
       "mixed",
       "mixedText",
+      "cake",
+      "cakeText",
+      "cakeStatus",
       "storyTitle",
       "about",
       "contactTitle"

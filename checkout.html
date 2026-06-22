@@ -303,7 +303,7 @@
         Hãy để lại tên của bạn trong nội dung zelle để cửa hàng có thể xác định đơn hàng của bạn.
       </p>
 
-      <p class="delivery-note" id="deliveryNote">Bạn đã chọn giao hàng. Cửa hàng sẽ liên hệ để xác nhận phí delivery, sau đó bạn sẽ Zelle phí giao hàng sau.</p>
+      <p class="delivery-note" id="deliveryNote">Bạn đã chọn giao hàng. Cửa hàng sẽ liên hệ để xác nhận phí giao hàng, sau đó bạn sẽ Zelle phí giao hàng sau.</p>
 
       <form class="zelle-proof-form" id="zelleProofForm" action="https://formsubmit.co/letienanh7a5@gmail.com" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="_template" value="table">
@@ -313,6 +313,7 @@
         <input type="hidden" name="Email" id="emailCustomerEmail">
         <input type="hidden" name="Phone" id="emailCustomerPhone">
         <input type="hidden" name="Address" id="emailCustomerAddress">
+        <input type="hidden" name="Customer note" id="emailCustomerNote">
         <input type="hidden" name="Fulfillment" id="emailFulfillment">
         <input type="hidden" name="Products" id="emailProducts">
         <input type="hidden" name="Bouquet total" id="emailTotal">
@@ -359,7 +360,7 @@
         complete: "Hoàn tất",
         completeHint: "Ấn vào đây sau khi hoàn tất Zelle và chụp lại màn hình thông tin Zelle.",
         sending: "Đang gửi đơn hàng. Nếu FormSubmit yêu cầu xác nhận, vui lòng hoàn tất để cửa hàng nhận được đơn.",
-        deliveryNote: "Bạn đã chọn giao hàng. Cửa hàng sẽ liên hệ để xác nhận phí delivery, sau đó bạn sẽ Zelle phí giao hàng sau."
+        deliveryNote: "Bạn đã chọn giao hàng. Cửa hàng sẽ liên hệ để xác nhận phí giao hàng, sau đó bạn sẽ Zelle phí giao hàng sau."
       },
       es: {
         title: "Pago con Zelle",
@@ -449,13 +450,15 @@
         total: subtotal,
         fulfillment,
         products: productSummary(lang),
-        screenshotName: screenshot ? screenshot.name : ""
+        screenshotName: screenshot ? screenshot.name : "",
+        note: orderInfo.note || ""
       };
 
       document.getElementById("emailCustomerName").value = updatedOrder.name || "";
       document.getElementById("emailCustomerEmail").value = updatedOrder.email || "";
       document.getElementById("emailCustomerPhone").value = updatedOrder.phone || "";
       document.getElementById("emailCustomerAddress").value = updatedOrder.address || "";
+      document.getElementById("emailCustomerNote").value = updatedOrder.note || "No customer note.";
       document.getElementById("emailFulfillment").value = fulfillment;
       document.getElementById("emailProducts").value = updatedOrder.products;
       document.getElementById("emailTotal").value = `$${subtotal}`;
